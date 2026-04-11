@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Unlock the YouTube Blueprint: Get more views, master the algorithm, and build a loyal subscriber base with proven strategies.">
+  <title>YouTube Blueprint | Grow Your Channel Faster</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0A0A0B;
+      color: #EFF1F3;
+      scroll-behavior: smooth;
+      line-height: 1.5;
+    }
+
+    /* subtle gradient background for modern depth */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 10% 20%, rgba(45, 45, 80, 0.2), transparent 60%);
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* animated fade-up on scroll */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* buttons & hover */
+    .btn-primary {
+      display: inline-block;
+      background: #FFFFFF;
+      color: #0A0A0B;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 14px 36px;
+      border-radius: 48px;
+      text-decoration: none;
+      letter-spacing: -0.2px;
+      transition: all 0.25s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      border: none;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.02);
+      background: #F0F2F5;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+      transition: all 0.2s;
+    }
+
+    .btn-primary:active {
+      transform: scale(0.98);
+    }
+
+    /* section spacing */
+    section {
+      padding: 80px 0;
+    }
+
+    .hero {
+      padding-top: 100px;
+      padding-bottom: 80px;
+    }
+
+    /* Hero typography */
+    .hero h1 {
+      font-size: clamp(2.8rem, 8vw, 5rem);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #FFFFFF 0%, #B0B3F0 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 28px;
+    }
+
+    .hero-subhead {
+      font-size: 1.3rem;
+      color: #A0A5B0;
+      max-width: 620px;
+      margin: 0 auto 32px auto;
+      font-weight: 400;
+    }
+
+    .trust-text {
+      font-size: 0.85rem;
+      color: #6C727F;
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    /* Benefits grid */
+    .benefits-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .benefit-card {
+      background: rgba(20, 20, 28, 0.75);
+      backdrop-filter: blur(2px);
+      border-radius: 32px;
+      padding: 32px 28px;
+      flex: 1 1 280px;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .benefit-card:hover {
+      border-color: rgba(255,255,255,0.15);
+      transform: translateY(-4px);
+    }
+
+    .benefit-icon {
+      font-size: 2.6rem;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+
+    .benefit-card h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .benefit-card p {
+      color: #B5BBC9;
+      line-height: 1.4;
+    }
+
+    /* testimonials */
+    .testimonials-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      margin-top: 48px;
+      justify-content: center;
+    }
+
+    .testimonial-card {
+      background: #111114;
+      border-radius: 28px;
+      padding: 28px;
+      flex: 1 1 280px;
+      border: 1px solid #22222A;
+      transition: all 0.2s;
+    }
+
+    .testimonial-card:hover {
+      border-color: #3A3A4A;
+      background: #141419;
+    }
+
+    .testimonial-text {
+      font-size: 1rem;
+      line-height: 1.45;
+      color: #E2E6EF;
+      margin-bottom: 24px;
+      font-weight: 400;
+      quotes: "“" "”" "‘" "’";
+    }
+
+    .testimonial-text::before {
+      content: "“";
+      font-size: 1.8rem;
+      line-height: 1;
+      color: #8B8FEF;
+      margin-right: 4px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .avatar {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, #3E3A6B, #1E1A3A);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 1rem;
+      color: white;
+      text-transform: uppercase;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .author-info strong {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .author-info span {
+      font-size: 0.8rem;
+      color: #888C9E;
+    }
+
+    /* final CTA section (different bg) */
+    .final-cta {
+      background: radial-gradient(ellipse at 70% 30%, #12121C, #050508);
+      border-radius: 56px;
+      margin: 40px auto 80px;
+      padding: 70px 28px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
+    }
+
+    .final-cta h2 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: #9095A8;
+      margin-bottom: 40px;
+    }
+
+    hr {
+      border-color: rgba(255,255,255,0.05);
+      margin: 20px 0;
+    }
+
+    /* responsive */
+    @media (max-width: 768px) {
+      section {
+        padding: 60px 0;
+      }
+      .hero {
+        padding-top: 70px;
+      }
+      .btn-primary {
+        padding: 12px 28px;
+        font-size: 1rem;
+      }
+      .benefit-card h3 {
+        font-size: 1.3rem;
+      }
+      .final-cta h2 {
+        font-size: 1.8rem;
+      }
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 0 50px;
+      font-size: 0.8rem;
+      color: #5A5E70;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      margin-top: 20px;
+    }
+
+    .cta-wrapper {
+      text-align: center;
+      margin: 32px 0 16px;
+    }
+
+    .flex-center {
+      display: flex;
+      justify-content: center;
+    }
+
+    /* small utilities */
+    .gradient-text {
+      background: linear-gradient(135deg, #F0F2F5, #B7BAF0);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- HERO SECTION -->
+    <section class="hero fade-up" id="hero">
+      <div style="text-align: center;">
+        <h1>Unlock the YouTube Blueprint:<br>Get More Views and Subscribers Faster.</h1>
+        <p class="hero-subhead">Your complete guide to growing your channel successfully.</p>
+        <div class="cta-wrapper">
+          <a href="#" class="btn-primary" id="hero-cta">Get the Blueprint Now</a>
+        </div>
+        <div class="trust-text">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.7"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15h-2v-2h2v2zm0-4h-2V7h2v6z" fill="#A0A5B0"/></svg>
+          Secure payment via Selar, a trusted platform.
+        </div>
+      </div>
+    </section>
+
+    <!-- BENEFITS SECTION (3 bullet points) -->
+    <section class="fade-up">
+      <h2 class="section-title">Why creators love the blueprint</h2>
+      <p class="section-sub">Proven framework, no fluff just growth</p>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">🎯</div>
+          <h3>Viral video strategies</h3>
+          <p>Learn the exact tactics for skyrocketing views & watch time — no luck needed.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🧠</div>
+          <h3>Master the algorithm</h3>
+          <p>Get discovered by the right audience with insider ranking signals & retention hacks.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🚀</div>
+          <h3>Loyal subscriber base</h3>
+          <p>Proven community-building methods that turn viewers into raving fans.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOCIAL PROOF / TESTIMONIALS -->
+    <section class="fade-up">
+      <h2 class="section-title">What Creators Are Saying:</h2>
+      <p class="section-sub">Join thousands of successful YouTubers</p>
+      <div class="testimonials-grid" id="testimonials-grid">
+        <!-- testimonials injected via JS for flexibility but also static for SEO? We'll generate via JS, but keep fallback -->
+      </div>
+    </section>
+
+    <!-- FINAL CTA with different background / gradient (standout) -->
+    <div class="fade-up" style="margin: 20px 0 40px;">
+      <div class="final-cta">
+        <h2>Ready to scale your YouTube channel?</h2>
+        <div class="cta-wrapper">
+          <a href="#" class="btn-primary" id="final-cta-btn">Get the Blueprint Now</a>
+        </div>
+        <div class="trust-text" style="justify-content: center; margin-top: 24px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15h-2v-2h2v2zm0-4h-2V7h2v6z" fill="#A0A5B0"/></svg>
+          Secure payment via Selar, a trusted platform.
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2025 YouTube Blueprint — proven channel growth system. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    // Fake testimonial data with avatars (initials or gradient background)
+    const testimonialsData = [
+      {
+        text: "This completely changed how I approach YouTube. My views doubled in weeks.",
+        name: "Alex Morgan",
+        handle: "@alexcreates",
+        initial: "AM"
+      },
+      {
+        text: "Finally something that actually explains the algorithm clearly. No more guesswork.",
+        name: "Jamie Lin",
+        handle: "@jamiemedia",
+        initial: "JL"
+      },
+      {
+        text: "I gained my first 10k subscribers using these strategies. Absolute game changer!",
+        name: "Taylor Reed",
+        handle: "@taylorvofficial",
+        initial: "TR"
+      },
+      {
+        text: "The Blueprint gave me the confidence to post consistently. Now I'm monetized!",
+        name: "Casey Zhang",
+        handle: "@caseyzg",
+        initial: "CZ"
+      },
+      {
+        text: "From 200 to 5k subs in 3 months. Best investment for my channel.",
+        name: "Riley Cooper",
+        handle: "@rileymakes",
+        initial: "RC"
+      }
+    ];
+
+    // Helper to generate avatar with background gradient and initial
+    function createAvatarElement(initial, seed) {
+      const avatarDiv = document.createElement('div');
+      avatarDiv.className = 'avatar';
+      // subtle distinct background based on name
+      const hue = (seed.charCodeAt(0) * 7) % 360;
+      avatarDiv.style.background = `linear-gradient(135deg, hsl(${hue}, 60%, 45%), hsl(${hue + 30}, 70%, 30%))`;
+      avatarDiv.textContent = initial;
+      return avatarDiv;
+    }
+
+    function buildTestimonials() {
+      const grid = document.getElementById('testimonials-grid');
+      if (!grid) return;
+      grid.innerHTML = '';
+      // show 4 testimonials for clean layout (but responsive will wrap)
+      const displayTestimonials = testimonialsData.slice(0, 5);
+      displayTestimonials.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'testimonial-card';
+        
+        const textElem = document.createElement('div');
+        textElem.className = 'testimonial-text';
+        textElem.innerText = item.text;
+        
+        const authorDiv = document.createElement('div');
+        authorDiv.className = 'testimonial-author';
+        
+        const avatar = createAvatarElement(item.initial, item.name);
+        const infoDiv = document.createElement('div');
+        infoDiv.className = 'author-info';
+        const strongName = document.createElement('strong');
+        strongName.innerText = item.name;
+        const handleSpan = document.createElement('span');
+        handleSpan.innerText = item.handle;
+        infoDiv.appendChild(strongName);
+        infoDiv.appendChild(handleSpan);
+        authorDiv.appendChild(avatar);
+        authorDiv.appendChild(infoDiv);
+        
+        card.appendChild(textElem);
+        card.appendChild(authorDiv);
+        grid.appendChild(card);
+      });
+    }
+
+    // Intersection Observer for fade-up animations
+    const fadeElements = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          // optional unobserve after first reveal for performance
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -20px 0px" });
+    
+    fadeElements.forEach(el => observer.observe(el));
+
+    // CTA Buttons click handling (conversion focused, could simulate purchase)
+    // Provide smooth alert for demo, but in real product would redirect to Selar checkout.
+    const ctaButtons = document.querySelectorAll('#hero-cta, #final-cta-btn');
+    function handleCTAClick(e) {
+      e.preventDefault();
+      // For high conversion simulation: open modal-like message or redirect (placeholder)
+      // We'll simulate a smooth redirect to selar (demo) but for this example, show an engaging message.
+      // In production, replace with actual Selar payment link. But for max conversion, we mimic checkout intention.
+      const selarMockUrl = "https://selar.com/2715cy35re"; // replace with actual product link
+      // Option: open new tab to selar (or simulate purchase intent)
+      window.open(selarMockUrl, '_blank');
+      // also fire a custom event to track conversion (optional)
+      console.log("CTA clicked – conversion intent tracked");
+    }
+    
+    ctaButtons.forEach(btn => {
+      btn.addEventListener('click', handleCTAClick);
+    });
+    
+    // Additional small micro-interactions: button hover and additional hover effects on benefit cards already done.
+    // Also ensure testimonial cards appear dynamic
+    
+    // Build testimonials on load
+    document.addEventListener('DOMContentLoaded', () => {
+      buildTestimonials();
+      
+      // optional: manually set visible for any elements already visible on load
+      const alreadyVisible = document.querySelectorAll('.fade-up');
+      alreadyVisible.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        if (rect.top <= windowHeight - 100) {
+          el.classList.add('visible');
+          observer.unobserve(el);
+        }
+      });
+      
+      // Preload style improvements for avatar backgrounds
+    });
+    
+    // Small resize observer to maintain consistency, but not needed
+    // Add slight parallax to hero? minimal
+    // For modern feel: add subtle gradient shift on scroll? not needed for performance.
+    
+    // Also ensure trust text matches design, add dynamic payment badge style
+    // We embed favicon? optional
+    // Final adjustments for any missing icons: handcrafted
+    
+    // (Optional) implement "learn more" but all conversion points are on CTA
+    // Additionally, add hover for testimonial cards and benefit cards already in css
+    
+    // Ensure all images & SVG are accessible, lazy loading for icons is fine.
+    // SEO: meta description and title already set.
+    // For better conversion: add a popup? Not required to keep minimal but buttons are prominent.
+    // add click tracking to hero-cta & final cta for analytics simulation.
+  </script>
+  <!-- Additional inline security and smoothness: force visible on hero -->
+  <style>
+    .hero.fade-up, .fade-up {
+      will-change: transform, opacity;
+    }
+    .visible {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+    /* subtle scroll padding */
+    html {
+      scroll-padding-top: 20px;
+    }
+    /* responsive trust text */
+    @media (max-width: 480px) {
+      .btn-primary {
+        width: 80%;
+        max-width: 280px;
+      }
+      .final-cta {
+        padding: 50px 20px;
+      }
+    }
+    .testimonial-card {
+      transition: all 0.2s ease-in-out;
+    }
+    .benefit-card {
+      transition: all 0.2s ease-in-out;
+    }
+    /* smooth focus */
+    a:focus-visible, .btn-primary:focus-visible {
+      outline: 2px solid #8B8FEF;
+      outline-offset: 2px;
+      border-radius: 48px;
+    }
+  </style>
+  <!-- Ensure that the actual product intent reflects 'Selar' as trusted platform. We include meta generator -->
+</body>
+</html>
