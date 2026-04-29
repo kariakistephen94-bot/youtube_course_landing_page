@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zero To 10K — The YouTube Growth System</title>
+<meta name="description" content="The exact system our students used to go from 0 to 10,000+ subscribers. Average result: 1,000 subs in 12 days.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Figtree:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --green:#00C853;--green2:#00a844;--gold:#FFD700;--gold2:#F5A623;
+  --red:#FF0000;--red2:#cc0000;--deep:#050508;--card:#0A0A12;--card2:#0d0d18;
+  --border:rgba(255,0,0,0.13);--text:#F0EEFF;--muted:#8A849E;
+  --yt:#FF0000;
+}
+html{scroll-behavior:smooth}
+body{background:var(--deep);color:var(--text);font-family:'Figtree',sans-serif;overflow-x:hidden}
+
+.ticker{background:linear-gradient(90deg,#080008,#140010,#080008);border-bottom:1px solid var(--border);padding:9px 0;overflow:hidden;white-space:nowrap}
+.ticker-inner{display:inline-block;animation:tick 35s linear infinite;font-size:.75rem;letter-spacing:2px;color:var(--yt);font-weight:700}
+@keyframes tick{from{transform:translateX(100vw)}to{transform:translateX(-100%)}}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(5,5,8,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:13px 20px}
+.nav-logo{font-family:'Bebas Neue',cursive;font-size:1.3rem;color:var(--yt);letter-spacing:3px}
+.nav-btn{background:linear-gradient(135deg,var(--yt),var(--red2));color:#fff;font-weight:900;font-size:.75rem;letter-spacing:.5px;padding:10px 18px;border-radius:6px;text-decoration:none;transition:all .2s;border:none;cursor:pointer;font-family:'Figtree',sans-serif}
+.nav-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(255,0,0,.4)}
+
+.hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 20px 60px;background:radial-gradient(ellipse 100% 70% at 50% 0%,#2d0000 0%,transparent 65%),var(--deep);position:relative;overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,0,0,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,0,0,.03) 1px,transparent 1px);background-size:44px 44px;pointer-events:none}
+.hero-glow{position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(255,0,0,.07) 0%,transparent 70%);pointer-events:none}
+
+.proof-bar{display:inline-flex;align-items:center;gap:10px;background:rgba(255,0,0,.1);border:1px solid rgba(255,0,0,.3);color:var(--yt);font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:9px 20px;border-radius:20px;margin-bottom:28px;position:relative}
+.live-dot{width:8px;height:8px;background:var(--yt);border-radius:50%;animation:blink 1.4s infinite}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.4)}}
+
+.hero h1{font-family:'Bebas Neue',cursive;font-size:clamp(3rem,16vw,9rem);line-height:.88;letter-spacing:1px;margin-bottom:10px;position:relative}
+.hero h1 .line1{display:block;color:var(--text)}
+.hero h1 .line2{display:block;background:linear-gradient(135deg,#fff 0%,var(--yt) 50%,#ff6666 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero h1 .line3{display:block;color:var(--gold);font-size:clamp(1.4rem,5vw,3.2rem);letter-spacing:6px;margin-top:4px}
+
+.hero-sub{font-size:clamp(.9rem,2.2vw,1.05rem);font-weight:600;color:var(--muted);max-width:500px;margin:20px auto 10px;line-height:1.7}
+.hero-sub strong{color:var(--text)}
+
+.sub-widget{
+  background:rgba(10,10,18,.9);
+  border:1px solid rgba(255,0,0,.25);
+  border-top:3px solid var(--yt);
+  border-radius:16px;
+  padding:20px 28px;
+  margin:22px auto 28px;
+  max-width:320px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 0 60px rgba(255,0,0,.12);
+}
+.sub-widget::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(255,0,0,.06),transparent);pointer-events:none}
+.sw-channel{font-size:.7rem;letter-spacing:2px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:8px}
+.sw-label{font-size:.6rem;letter-spacing:3px;color:rgba(255,255,255,.3);text-transform:uppercase;margin-bottom:4px}
+.sw-count{font-family:'Bebas Neue',cursive;font-size:3.8rem;color:var(--text);line-height:1;text-shadow:0 0 30px rgba(255,0,0,.4)}
+.sw-count span{color:var(--yt)}
+.sw-since{font-size:.62rem;color:var(--muted);margin-top:4px}
+.sw-bar{height:3px;background:rgba(255,255,255,.05);border-radius:2px;margin-top:14px;overflow:hidden}
+.sw-bar-fill{height:100%;width:0;background:linear-gradient(90deg,var(--yt),#ff6666);border-radius:2px;animation:barFill 12s ease-in-out infinite}
+@keyframes barFill{0%{width:0}100%{width:100%}}
+.sw-days{font-size:.58rem;color:rgba(255,255,255,.25);margin-top:6px;letter-spacing:1px}
+.sw-notif{position:absolute;bottom:10px;right:-180px;background:rgba(255,0,0,.15);border:1px solid rgba(255,0,0,.3);border-radius:8px;padding:5px 10px;font-size:.62rem;color:var(--yt);font-weight:700;animation:notifSlide 3.5s ease-in-out infinite;white-space:nowrap}
+@keyframes notifSlide{0%,100%{right:-180px;opacity:0}20%,75%{right:8px;opacity:1}90%{right:8px;opacity:0}}
+
+.proof-nums{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin-bottom:36px}
+.pnum{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 18px;text-align:center;min-width:100px}
+.pnum strong{font-family:'Bebas Neue',cursive;font-size:1.7rem;color:var(--gold);display:block;line-height:1}
+.pnum span{font-size:.6rem;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase}
+
+.cta-stack{display:flex;flex-direction:column;align-items:center;gap:12px}
+.price-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center}
+.old-price{font-size:1rem;color:var(--muted);text-decoration:line-through}
+.new-price{font-family:'Bebas Neue',cursive;font-size:3.2rem;color:var(--gold);line-height:1}
+.save-badge{background:var(--yt);color:#fff;font-size:.7rem;font-weight:900;letter-spacing:1px;padding:5px 12px;border-radius:50px}
+.dl-btn{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--yt),var(--red2));color:#fff;font-weight:900;font-size:1rem;padding:20px 44px;border-radius:8px;text-decoration:none;border:none;cursor:pointer;font-family:'Figtree',sans-serif;transition:all .2s;box-shadow:0 0 50px rgba(255,0,0,.35);animation:btnPulse 2.5s ease-in-out infinite}
+.dl-btn:hover{transform:translateY(-3px);box-shadow:0 0 70px rgba(255,0,0,.6);animation:none}
+@keyframes btnPulse{0%,100%{box-shadow:0 0 50px rgba(255,0,0,.35)}50%{box-shadow:0 0 80px rgba(255,0,0,.6)}}
+.btn-note{font-size:.72rem;color:var(--muted);letter-spacing:.5px;text-align:center}
+
+.trust-bar{background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:18px;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:7px;font-size:.75rem;font-weight:700;color:var(--muted)}
+
+.section-tag{font-size:.65rem;font-weight:700;letter-spacing:4px;color:var(--yt);text-transform:uppercase;margin-bottom:8px}
+.section-title{font-family:'Bebas Neue',cursive;font-size:clamp(2rem,7vw,3.8rem);line-height:.95;margin-bottom:6px}
+.section-title span{color:var(--gold)}
+.divider-line{width:48px;height:3px;background:linear-gradient(90deg,var(--yt),transparent);border-radius:2px;margin:14px 0 24px}
+
+.video-section{padding:60px 20px;max-width:700px;margin:0 auto}
+.video-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:20px}
+.vc-top{padding:18px 20px 14px;border-bottom:1px solid var(--border)}
+.vc-label{font-size:.62rem;font-weight:700;letter-spacing:2px;color:var(--yt);text-transform:uppercase;margin-bottom:6px}
+.vc-title{font-size:.95rem;font-weight:700;line-height:1.4;color:var(--text)}
+.vc-sub{font-size:.8rem;color:var(--muted);margin-top:4px;line-height:1.5}
+.vf-wide{position:relative;padding-top:56.25%}
+.vf-wide iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.vf-tall{position:relative;aspect-ratio:9/16;max-height:500px}
+.vf-tall iframe{width:100%;height:100%;border:none;display:block}
+
+.sp-strip{padding:60px 20px;background:linear-gradient(180deg,#060006,#080008);border-bottom:1px solid rgba(255,215,0,.1)}
+.sp-inner{max-width:700px;margin:0 auto}
+.proof-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:18px}
+.pc-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.pc-avatar{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',cursive;font-size:1.3rem;font-weight:900;flex-shrink:0}
+.pc-name{font-size:.92rem;font-weight:700;margin-bottom:2px}
+.pc-meta{font-size:.7rem;color:var(--muted)}
+.pc-body{padding:20px}
+.pc-story{font-size:.88rem;line-height:1.75;color:#bbb;margin-bottom:18px}
+.pc-story em{color:var(--gold);font-style:normal;font-weight:700}
+.proof-imgs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.proof-imgs img{width:100%;border-radius:10px;border:1px solid var(--border);display:block}
+@media(max-width:420px){.proof-imgs{grid-template-columns:1fr}}
+.pc-footer{padding:12px 20px;border-top:1px solid var(--border);font-size:.72rem;color:var(--muted)}
+
+.nums-strip{padding:50px 20px;background:var(--card);border-bottom:1px solid var(--border)}
+.nums-inner{max-width:700px;margin:0 auto}
+.nums-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:28px}
+.num-card{background:linear-gradient(135deg,rgba(255,0,0,.06),rgba(255,0,0,.02));border:1px solid var(--border);border-radius:16px;padding:24px 16px;text-align:center}
+.num-val{font-family:'Bebas Neue',cursive;font-size:2.8rem;color:var(--yt);line-height:1;margin-bottom:6px}
+.num-label{font-size:.7rem;color:var(--muted);line-height:1.4}
+
+.inside-section{padding:60px 20px;max-width:700px;margin:0 auto}
+.stack-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:28px}
+.stack-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;position:relative;overflow:hidden;transition:all .3s}
+.stack-card:hover{border-color:rgba(255,0,0,.4);transform:translateY(-3px);box-shadow:0 16px 50px rgba(255,0,0,.1)}
+.stack-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--yt),transparent)}
+.stack-icon{font-size:1.8rem;margin-bottom:12px;display:block}
+.stack-name{font-weight:900;font-size:.88rem;color:var(--yt);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+.stack-desc{font-size:.82rem;line-height:1.6;color:var(--muted)}
+.stack-val{margin-top:12px;font-size:.7rem;color:var(--gold);font-weight:700}
+.tools-box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;margin-top:14px}
+.tools-title{font-size:.75rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--yt);margin-bottom:18px}
+.tool-row{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.tool-row:last-child{border-bottom:none}
+.tdot{width:7px;height:7px;border-radius:50%;background:var(--yt);flex-shrink:0}
+.tname2{font-size:.85rem;font-weight:600;color:var(--text);flex:1}
+.ttag{font-size:.62rem;font-weight:700;background:rgba(255,0,0,.1);color:var(--yt);padding:3px 10px;border-radius:50px;white-space:nowrap}
+
+.testi-section{padding:60px 20px;background:linear-gradient(180deg,#060006,var(--card));border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.testi-inner{max-width:700px;margin:0 auto}
+.testi-grid{display:grid;gap:12px;margin-top:28px}
+.testi-card{background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:22px;position:relative}
+.testi-card::before{content:'"';font-family:'Bebas Neue',cursive;font-size:5rem;color:var(--yt);position:absolute;top:-12px;left:14px;line-height:1;opacity:.2}
+.testi-stars{color:var(--gold);font-size:.8rem;margin-bottom:6px}
+.testi-text{font-size:.88rem;line-height:1.75;color:#ccc;padding-top:8px}
+.testi-footer{display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:14px;border-top:1px solid var(--border)}
+.tavi{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.85rem;flex-shrink:0}
+.t-name{font-weight:700;font-size:.82rem;color:var(--text)}
+.t-meta{font-size:.68rem;color:var(--muted)}
+
+.coaches-section{padding:60px 20px;max-width:700px;margin:0 auto}
+.coaches-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:28px}
+.coach-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px 16px;text-align:center;transition:all .3s}
+.coach-card:hover{border-color:rgba(255,0,0,.4);transform:translateY(-3px)}
+.coach-av{width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#4d0000,var(--yt));display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',cursive;font-size:1.6rem;color:#fff;margin:0 auto 12px;border:2px solid rgba(255,0,0,.3)}
+.coach-role{font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--yt);font-weight:700;margin-bottom:4px}
+.coach-name{font-weight:900;font-size:.9rem;margin-bottom:6px}
+.coach-desc{font-size:.72rem;color:var(--muted);line-height:1.5}
+
+.urgency-section{padding:40px 20px;background:rgba(255,61,61,.04);border-top:1px solid rgba(255,61,61,.2);border-bottom:1px solid rgba(255,61,61,.2)}
+.urgency-inner{max-width:600px;margin:0 auto;text-align:center}
+.urgency-title{font-family:'Bebas Neue',cursive;font-size:clamp(2rem,8vw,3.5rem);color:var(--yt);margin-bottom:18px}
+.urgency-box{background:rgba(255,61,61,.06);border:1px solid rgba(255,61,61,.2);border-radius:14px;padding:22px;text-align:left}
+.urgency-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,61,61,.1)}
+.urgency-item:last-child{border-bottom:none}
+.u-icon{font-size:1rem;flex-shrink:0;margin-top:2px}
+.u-text{font-size:.88rem;line-height:1.6;color:var(--text)}
+.u-text strong{color:var(--yt)}
+
+.final-section{padding:90px 20px;text-align:center;background:radial-gradient(ellipse 80% 60% at 50% 100%,#2d0000 0%,transparent 65%)}
+.final-section h2{font-family:'Bebas Neue',cursive;font-size:clamp(2.5rem,10vw,6rem);line-height:.92;margin-bottom:20px}
+.final-section h2 span{color:var(--yt)}
+.final-sub{color:var(--muted);max-width:440px;margin:0 auto 36px;font-size:.92rem;line-height:1.7}
+.timer-wrap{background:rgba(255,61,61,.08);border:2px solid rgba(255,61,61,.3);border-radius:16px;padding:18px 32px;margin-bottom:24px;display:inline-block}
+.timer-label{font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--yt);margin-bottom:10px;font-weight:700}
+.timer-row{display:flex;gap:16px;align-items:center;justify-content:center}
+.t-block{text-align:center}
+.t-num{font-family:'Bebas Neue',cursive;font-size:3.5rem;color:var(--yt);line-height:1;text-shadow:0 0 20px rgba(255,0,0,.5)}
+.t-unit{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.t-sep{font-family:'Bebas Neue',cursive;font-size:3rem;color:var(--yt);opacity:.6;padding-bottom:10px}
+.slots-txt{font-size:.82rem;color:var(--yt);font-weight:700;letter-spacing:1px;margin-bottom:28px;animation:blink2 1.2s infinite}
+@keyframes blink2{0%,100%{opacity:1}50%{opacity:.4}}
+
+.float-btn{position:fixed;bottom:20px;right:16px;z-index:200;background:linear-gradient(135deg,var(--yt),var(--red2));color:#fff;display:flex;align-items:center;gap:8px;padding:13px 20px;border-radius:50px;font-weight:900;font-size:.82rem;text-decoration:none;box-shadow:0 6px 30px rgba(255,0,0,.45);animation:floatPop 2.5s ease-in-out infinite;transition:transform .15s;border:none;cursor:pointer;font-family:'Figtree',sans-serif}
+.float-btn:hover{transform:scale(1.05);animation:none}
+@keyframes floatPop{0%,100%{box-shadow:0 6px 30px rgba(255,0,0,.45)}50%{box-shadow:0 6px 55px rgba(255,0,0,.75)}}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .55s,transform .55s}
+.reveal.visible{opacity:1;transform:none}
+footer{background:#000;text-align:center;padding:16px;font-size:.65rem;color:#333;letter-spacing:1px}
+
+.top-timer{background:rgba(255,61,61,.08);border-bottom:2px solid rgba(255,61,61,.35);padding:14px 20px;text-align:center}
+.top-timer-label{font-size:.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--yt);font-weight:700;margin-bottom:8px}
+.top-timer-row{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.top-t-block{text-align:center}
+.top-t-num{font-family:'Bebas Neue',cursive;font-size:2.6rem;color:var(--yt);line-height:1;text-shadow:0 0 20px rgba(255,0,0,.5)}
+.top-t-unit{font-size:.52rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.top-t-sep{font-family:'Bebas Neue',cursive;font-size:2.2rem;color:var(--yt);opacity:.5;padding-bottom:10px}
+.top-timer-slots{font-size:.72rem;color:var(--yt);font-weight:700;letter-spacing:1px;animation:blink2 1.2s infinite}
+
+.float-slot{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);z-index:199;width:calc(100% - 32px);max-width:360px;background:rgba(5,5,8,.96);border:1px solid rgba(255,0,0,.22);border-top:2px solid var(--yt);border-radius:12px;padding:10px 14px 9px;backdrop-filter:blur(20px);box-shadow:0 6px 30px rgba(0,0,0,.55),0 0 20px rgba(255,0,0,.07);transition:background .3s, border-color .3s, box-shadow .3s}
+.float-slot.flash{background:rgba(255,61,61,.18) !important;border-color:var(--yt) !important;box-shadow:0 0 0 4px rgba(255,61,61,.3), 0 6px 30px rgba(255,61,61,.3) !important;animation:shake .35s ease}
+@keyframes shake{0%,100%{transform:translateX(-50%)}15%,45%,75%{transform:translateX(calc(-50% - 7px))}30%,60%,90%{transform:translateX(calc(-50% + 7px))}}
+.fs-label{font-size:.52rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:8px;text-align:center}
+.fs-dots{display:flex;justify-content:center;gap:4px;flex-wrap:wrap;margin-bottom:7px}
+.fs-dot{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;border:1.5px solid;font-size:.45rem;transition:all .4s}
+.fs-dot.taken{background:rgba(255,61,61,.15);border-color:var(--yt);color:var(--yt)}
+.fs-dot.taken.just-taken{animation:takenPop .5s ease}
+@keyframes takenPop{0%{transform:scale(1.6);background:rgba(255,61,61,.5)}100%{transform:scale(1)}}
+.fs-dot.you{background:rgba(255,0,0,.2);border-color:var(--yt);color:var(--yt);font-size:.42rem;animation:youPulse 1.8s infinite}
+.fs-dot.open{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.18)}
+@keyframes youPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,0,0,.5)}50%{box-shadow:0 0 0 5px rgba(255,0,0,0)}}
+.fs-caption{font-size:.62rem;color:var(--muted);text-align:center;line-height:1.4}
+.fs-caption strong{color:var(--yt)}
+.fs-caption .you-note{color:var(--yt);font-weight:700}
+.fs-alert{font-size:.7rem;background:rgba(255,61,61,.15);border:1px solid rgba(255,61,61,.4);border-radius:5px;padding:7px 12px;margin-top:7px;color:var(--yt);font-weight:900;text-align:center;display:none;letter-spacing:.3px}
+.fs-alert.show{display:block;animation:alertPop .3s ease}
+@keyframes alertPop{0%{transform:scale(.92);opacity:0}60%{transform:scale(1.04)}100%{transform:scale(1);opacity:1}}
+</style>
+</head>
+<body>
+
+<a href="#enroll" class="float-btn buy-trigger">🔴 Buy Now — $97</a>
+
+<div class="ticker"><div class="ticker-inner">🔴 LIVE · 247 STUDENTS ENROLLED &nbsp;•&nbsp; 12,847 SUBSCRIBERS GAINED &nbsp;•&nbsp; 47 CHANNELS NOW MONETIZED &nbsp;•&nbsp; AVG 12 DAYS TO FIRST 1,000 SUBS &nbsp;•&nbsp; 4 YOUTUBE COACHES READY &nbsp;&nbsp;&nbsp;&nbsp; 🔴 LIVE · 247 STUDENTS ENROLLED &nbsp;•&nbsp; 12,847 SUBSCRIBERS GAINED &nbsp;•&nbsp; 47 CHANNELS NOW MONETIZED &nbsp;•&nbsp; AVG 12 DAYS TO FIRST 1,000 SUBS &nbsp;•&nbsp; 4 YOUTUBE COACHES READY &nbsp;&nbsp;&nbsp;&nbsp;</div></div>
+
+<nav>
+  <div class="nav-logo">ZERO TO 10K</div>
+  <a href="#enroll" class="nav-btn buy-trigger">🔴 Buy Now</a>
+</nav>
+
+<div class="top-timer">
+  <div class="top-timer-label">⏳ Discount Expires In</div>
+  <div class="top-timer-row">
+    <div class="top-t-block"><div class="top-t-num" id="top-mins">04</div><div class="top-t-unit">Minutes</div></div>
+    <div class="top-t-sep">:</div>
+    <div class="top-t-block"><div class="top-t-num" id="top-secs">00</div><div class="top-t-unit">Seconds</div></div>
+    <div class="top-timer-slots" id="slots-left-txt">🔴 10 Spots Left</div>
+  </div>
+</div>
+
+<div class="float-slot" id="float-slot">
+  <div class="fs-label">15 Enrollment Spots — Live Status</div>
+  <div class="fs-dots" id="fs-dots"></div>
+  <div class="fs-caption" id="fs-caption"></div>
+  <div class="fs-alert" id="fs-alert">⚡ Someone just enrolled — YOUR spot moved!</div>
+</div>
+
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="proof-bar reveal"><span class="live-dot"></span>247 Channels Growing — Spots Closing</div>
+  <h1 class="reveal">
+    <span class="line1">ZERO</span>
+    <span class="line2">TO 10K</span>
+    <span class="line3">— In 12 Days —</span>
+  </h1>
+
+  <div class="sub-widget reveal">
+    <div class="sw-channel">🎬 @YourChannel &nbsp;·&nbsp; <span style="color:var(--yt)">LIVE</span></div>
+    <div class="sw-label">SUBSCRIBERS</div>
+    <div class="sw-count" id="sw-count"><span id="sub-num">0</span></div>
+    <div class="sw-since">Started 12 days ago &nbsp;🔔</div>
+    <div class="sw-bar"><div class="sw-bar-fill"></div></div>
+    <div class="sw-days">↑ Growing while you sleep</div>
+    <div class="sw-notif" id="sw-notif">🔔 New subscriber!</div>
+  </div>
+
+  <div class="hero-celeb reveal" style="margin:0 auto 18px;max-width:680px;width:100%;border-radius:18px;overflow:hidden;border:2px solid rgba(255,0,0,.3);box-shadow:0 0 60px rgba(255,0,0,.18);position:relative;">
+    <img src="images/img1.jpeg" alt="Creator success" style="width:100%;display:block;border-radius:16px;">
+    <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(5,5,8,.92));padding:20px 22px 18px;">
+      <div style="font-family:'Bebas Neue',cursive;font-size:clamp(1.4rem,5vw,2.4rem);color:#fff;line-height:1;">THIS COULD BE YOU <span style="color:var(--yt)">IN 12 DAYS</span></div>
+      <div style="font-size:.75rem;color:rgba(255,255,255,.6);margin-top:4px;letter-spacing:1px;">REAL STUDENT · 100,000 SUBSCRIBERS MILESTONE</div>
+    </div>
+  </div>
+
+  <p class="hero-sub reveal">The <strong>exact system</strong> our students used to grow from <strong>0 to 10,000+ subscribers</strong> — viral thumbnail secrets, YouTube SEO, and <strong>4 personal coaches</strong> who work with you until your channel takes off.</p>
+  <div class="proof-nums reveal">
+    <div class="pnum"><strong>10K+</strong><span>Avg Growth</span></div>
+    <div class="pnum"><strong>247</strong><span>Students</span></div>
+    <div class="pnum"><strong>4</strong><span>Coaches</span></div>
+    <div class="pnum"><strong>12 Days</strong><span>Avg to 1K</span></div>
+  </div>
+  <div class="cta-stack reveal">
+    <div class="price-row">
+      <span class="old-price">$197</span>
+      <span class="new-price">$97</span>
+      <span class="save-badge">51% OFF</span>
+    </div>
+    <a id="enroll" href="#enroll" class="dl-btn buy-trigger">🔴 Buy Now — $97</a>
+    <div class="btn-note">🔒 Secure Checkout · Instant Access · 4 Coaches Ready</div>
+  </div>
+</section>
+
+<div class="trust-bar">
+  <div class="trust-item"><span>✅</span> Instant Access</div>
+  <div class="trust-item"><span>🔒</span> Secure Payment</div>
+  <div class="trust-item"><span>👥</span> 4 Personal Coaches</div>
+  <div class="trust-item"><span>📈</span> Proven Growth System</div>
+  <div class="trust-item"><span>🤖</span> AI-Powered Strategy</div>
+</div>
+
+<div style="background:linear-gradient(135deg,#0a0010,#14000a,#0a0010);border-top:1px solid rgba(255,0,0,.2);border-bottom:1px solid rgba(255,0,0,.2);padding:38px 20px;text-align:center;">
+  <div style="max-width:700px;margin:0 auto;">
+    <div style="font-size:.62rem;font-weight:700;letter-spacing:5px;color:var(--yt);text-transform:uppercase;margin-bottom:12px;">▶ THE SYSTEM INSIDE</div>
+    <h2 style="font-family:'Bebas Neue',cursive;font-size:clamp(1.8rem,7vw,3.6rem);line-height:1;color:#fff;margin-bottom:10px;">
+      YouTube Success Blueprint:<br>
+      <span style="background:linear-gradient(135deg,var(--yt),#ff6666);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">The Step-by-Step Formula</span><br>
+      <span style="color:var(--gold);font-size:clamp(1.2rem,4vw,2.2rem);">To Go Viral &amp; Make Money</span>
+    </h2>
+    <div style="width:60px;height:3px;background:linear-gradient(90deg,var(--yt),transparent);border-radius:2px;margin:14px auto 0;"></div>
+  </div>
+</div>
+
+<div class="video-section">
+  <div class="section-tag reveal">Watch Before You Join</div>
+  <div class="divider-line reveal"></div>
+  <h2 class="section-title reveal">Student Hits 1,000 Subs<br><span>In 9 Days. Live Reaction.</span></h2>
+  <p class="reveal" style="color:var(--muted);font-size:.88rem;line-height:1.7;margin-bottom:24px">Watch this first. A real student — zero experience, zero audience — follows the system and shows you the exact moment their subscriber count crosses 1,000. Not edited. Not staged. Just a creator who followed the steps.</p>
+  <div class="video-card reveal">
+    <div class="vc-top">
+      <div class="vc-label">📈 Live Growth — Real Channel</div>
+      <div class="vc-title">From 0 to 1,000 Subscribers — Week 1 Result</div>
+      <div class="vc-sub">Showing exactly what happens when you follow the system. Unedited.</div>
+    </div>
+    <div class="vf-wide"><iframe src="https://www.youtube.com/embed/Xp1q8xigFO8" allowfullscreen allow="autoplay; encrypted-media; picture-in-picture" loading="lazy"></iframe></div>
+  </div>
+</div>
+
+<section class="sp-strip">
+  <div class="sp-inner">
+    <div class="section-tag reveal">Real Students. Real Channels.</div>
+    <div class="divider-line reveal"></div>
+    <h2 class="section-title reveal">Here's What <span>Their Analytics</span> Look Like</h2>
+    <p class="reveal" style="color:var(--muted);font-size:.88rem;margin-bottom:32px;line-height:1.65">These are not promises. These are real students — people who had zero experience, followed the system, and started growing real audiences on YouTube.</p>
+
+    <div class="proof-card reveal">
+      <div class="pc-header">
+        <div class="pc-avatar" style="background:rgba(255,215,0,.15);color:var(--gold)">SM</div>
+        <div><div class="pc-name">Sarah Mitchell</div><div class="pc-meta">📍 Austin, TX &nbsp;•&nbsp; 0 experience before joining</div></div>
+      </div>
+      <div class="pc-body">
+        <p class="pc-story">Sarah had tried to grow a YouTube channel for two years. She'd upload a video, get 12 views, and give up for three months. She joined Zero To 10K, followed the SEO module and the thumbnail formula — and her very next upload hit 8,400 views. She sent a screen recording of herself watching the analytics climb. Her exact words: <em>"I'm literally shaking. This actually works."</em></p>
+        <div class="proof-imgs">
+          <img src="images/img2.jpeg" alt="Sarah channel analytics" loading="lazy">
+          <img src="images/img3.jpeg" alt="Sarah subscriber growth" loading="lazy">
+        </div>
+      </div>
+      <div class="pc-footer">✅ Verified Analytics Screenshot &nbsp;•&nbsp; Sent directly to the coaching group</div>
+    </div>
+
+    <div class="proof-card reveal">
+      <div class="pc-header">
+        <div class="pc-avatar" style="background:rgba(255,0,0,.12);color:var(--yt)">MO</div>
+        <div><div class="pc-name">Marcus Okafor</div><div class="pc-meta">📍 London, UK &nbsp;•&nbsp; Hit monetization in 6 weeks</div></div>
+      </div>
+      <div class="pc-body">
+        <p class="pc-story">Marcus had been buying YouTube courses for over a year — each one full of theory and no real steps. When he joined and followed the viral formula module, he uploaded 3 videos in week one. By week 6 he had crossed 10,000 subscribers and YouTube approved his channel for monetization. He sent the approval email directly to the group with just one message: <em>"It took 6 weeks. What was I waiting for?"</em></p>
+        <div class="proof-imgs">
+          <img src="images/img4.jpeg" alt="Marcus monetization" loading="lazy">
+          <img src="images/img5.jpeg" alt="Marcus subscriber count" loading="lazy">
+        </div>
+      </div>
+      <div class="pc-footer">✅ Verified Analytics &nbsp;•&nbsp; Sent directly to coaching group</div>
+    </div>
+
+    <div class="proof-card reveal">
+      <div class="pc-header">
+        <div class="pc-avatar" style="background:rgba(245,166,35,.12);color:var(--gold2)">PS</div>
+        <div><div class="pc-name">Priya Sharma</div><div class="pc-meta">📍 Toronto, CA &nbsp;•&nbsp; First video hit 47K views</div></div>
+      </div>
+      <div class="pc-body">
+        <p class="pc-story">Priya's first 11 YouTube videos averaged 94 views each. She was ready to quit. She found this course, studied the thumbnail system and the hook formula for 3 days — then re-uploaded a revamped version of her best video. It hit 47,000 views in 12 days. She gained 3,200 subscribers from a single upload. All from a system she built by following one module step by step.</p>
+        <div class="proof-imgs">
+          <img src="images/img6.jpeg" alt="Priya viral video" loading="lazy">
+          <img src="images/img7.jpeg" alt="Priya analytics" loading="lazy">
+        </div>
+      </div>
+      <div class="pc-footer">✅ Verified Analytics &nbsp;•&nbsp; Sent directly to coaching group</div>
+    </div>
+
+    <div class="proof-card reveal">
+      <div class="pc-header">
+        <div class="pc-avatar" style="background:rgba(255,0,0,.1);color:var(--yt)">JR</div>
+        <div><div class="pc-name">Jake Rivera</div><div class="pc-meta">📍 Miami, FL &nbsp;•&nbsp; 22K subscribers in 30 days</div></div>
+      </div>
+      <div class="pc-body">
+        <p class="pc-story">Jake was skeptical — he'd seen too many YouTube gurus. What convinced him was watching a live coaching call where another student was gaining subscribers in real time, with everyone watching the counter go up. He trusted the process. Applied the AI content engine module, posted 8 videos in 30 days — and hit 22,000 subscribers. He built it in a single month following a system he could actually understand.</p>
+        <div class="proof-imgs">
+          <img src="images/img8.jpeg" alt="Jake channel growth" loading="lazy">
+          <img src="images/img9.jpeg" alt="Jake analytics" loading="lazy">
+        </div>
+      </div>
+      <div class="pc-footer">✅ Verified Analytics &nbsp;•&nbsp; Sent directly to coaching group</div>
+    </div>
+
+    <div class="proof-card reveal">
+      <div class="pc-header">
+        <div class="pc-avatar" style="background:rgba(255,0,0,.15);color:var(--yt)">📊</div>
+        <div>
+          <div class="pc-name">Real Channel Analytics — Live Screenshot</div>
+          <div class="pc-meta">📍 Verified YouTube Studio &nbsp;•&nbsp; Last 28 days</div>
+        </div>
+      </div>
+      <div class="pc-body">
+        <p class="pc-story">This is a real YouTube Studio analytics screenshot from one of our students. <em>75,200 views. 6,500 watch hours. +604 new subscribers. $297.29 in revenue.</em> Not mockups. Not photoshop. This is what the dashboard actually looks like after following the system.</p>
+        <div style="text-align:center;">
+          <img src="images/img10.jpeg" alt="Real YouTube channel analytics" style="width:100%;max-width:420px;border-radius:12px;border:1px solid rgba(255,0,0,.25);box-shadow:0 8px 40px rgba(0,0,0,.5);display:inline-block;">
+        </div>
+      </div>
+      <div class="pc-footer">✅ Verified YouTube Studio Screenshot &nbsp;•&nbsp; Unedited</div>
+    </div>
+
+    <div class="proof-card reveal">
+      <div class="pc-header">
+        <div class="pc-avatar" style="background:rgba(255,215,0,.15);color:var(--gold)">🔥</div>
+        <div>
+          <div class="pc-name">Student Channel — Viral Content Grid</div>
+          <div class="pc-meta">📍 YouTube Short-Form Content &nbsp;•&nbsp; Millions of Views Per Video</div>
+        </div>
+      </div>
+      <div class="pc-body">
+        <p class="pc-story">This is what a student's channel looks like after applying the viral content strategy module. <em>31M views. 11M views. 10M views. 6.1M views. 4.4M views.</em> Multiple videos hitting millions — from the same channel, using the exact formula inside the course.</p>
+        <div style="text-align:center;">
+          <img src="images/img11.jpeg" alt="YouTube channel with multiple viral videos" style="width:100%;max-width:480px;border-radius:12px;border:1px solid rgba(255,215,0,.2);box-shadow:0 8px 40px rgba(0,0,0,.5);display:inline-block;">
+        </div>
+      </div>
+      <div class="pc-footer">✅ Real Channel Dashboard &nbsp;•&nbsp; Sent directly to coaching group</div>
+    </div>
+
+    <div style="text-align:center;margin-top:36px" class="reveal">
+      <a href="#enroll" class="dl-btn buy-trigger">🔴 Buy Now — Get Instant Access</a>
+      <p class="btn-note" style="margin-top:10px">$97 · Instant Access · 4 Coaches Ready</p>
+    </div>
+  </div>
+</section>
+
+<div style="background:linear-gradient(135deg,#06000a,#0c0005,#06000a);padding:44px 20px;text-align:center;border-top:2px solid rgba(255,215,0,.15);border-bottom:2px solid rgba(255,215,0,.15);">
+  <div style="max-width:700px;margin:0 auto;">
+    <div style="font-size:.6rem;font-weight:700;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-bottom:12px;">★ PROVEN BY 247 STUDENTS</div>
+    <h2 style="font-family:'Bebas Neue',cursive;font-size:clamp(1.8rem,7vw,3.5rem);line-height:.95;color:#fff;margin-bottom:10px;">
+      The YouTube Growth Blueprint:<br>
+      <span style="color:var(--yt);">Step-by-Step Secrets</span><br>
+      <span style="color:var(--gold);font-size:clamp(1.2rem,4vw,2rem);">to Views, Subs &amp; Income</span>
+    </h2>
+    <p style="font-size:.85rem;color:var(--muted);margin-top:14px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.65;">Every module, every template, every shortcut — mapped out step by step. No guesswork. No theory. Just results.</p>
+    <div style="width:60px;height:3px;background:linear-gradient(90deg,var(--gold),transparent);border-radius:2px;margin:16px auto 0;"></div>
+  </div>
+</div>
+
+<div class="video-section">
+  <div class="section-tag reveal">Student Videos</div>
+  <div class="divider-line reveal"></div>
+  <h2 class="section-title reveal">Watch Them <span>Tell It Themselves</span></h2>
+  <div class="video-card reveal">
+    <div class="vc-top">
+      <div class="vc-label">🎓 Week 1 — John Adi</div>
+      <div class="vc-title">Zero subscribers. Zero experience. Watch what happened in 7 days.</div>
+      <div class="vc-sub">John had never uploaded a video before joining Zero To 10K.</div>
+    </div>
+    <div class="vf-tall"><iframe src="https://www.youtube.com/embed/hV3i4sofHU8" allowfullscreen loading="lazy"></iframe></div>
+  </div>
+  <div class="video-card reveal">
+    <div class="vc-top">
+      <div class="vc-label">📈 30-Day Milestone — Marcus</div>
+      <div class="vc-title">Watching his subscriber count hit 10K live. In front of the whole group.</div>
+      <div class="vc-sub">Not staged. Not edited. 30 days of following the system.</div>
+    </div>
+    <div class="vf-tall"><iframe src="https://www.youtube.com/embed/FM6j3ZunRFw" allowfullscreen loading="lazy"></iframe></div>
+  </div>
+  <div class="video-card reveal">
+    <div class="vc-top">
+      <div class="vc-label">🎬 Student Testimony</div>
+      <div class="vc-title">Real results from the Zero To 10K community.</div>
+    </div>
+    <div class="vf-tall"><iframe src="https://www.youtube.com/embed/v8HTO9E8FdI" allowfullscreen loading="lazy"></iframe></div>
+  </div>
+</div>
+
+<div class="nums-strip">
+  <div class="nums-inner">
+    <div class="section-tag reveal">By The Numbers</div>
+    <div class="divider-line reveal"></div>
+    <div class="nums-grid">
+      <div class="num-card reveal"><div class="num-val">12K+</div><div class="num-label">Average Subscribers Gained Per Student</div></div>
+      <div class="num-card reveal"><div class="num-val">12 Days</div><div class="num-label">Average Time To First 1,000 Subscribers</div></div>
+      <div class="num-card reveal"><div class="num-val">4</div><div class="num-label">Personal YouTube Coaches Assigned To You</div></div>
+      <div class="num-card reveal"><div class="num-val">47</div><div class="num-label">Student Channels Now Fully Monetized</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="inside-section">
+  <div class="section-tag reveal">What You Get</div>
+  <div class="divider-line reveal"></div>
+  <h2 class="section-title reveal">From Zero to <span>YouTube Hero</span></h2>
+  <div class="reveal" style="font-size:clamp(.9rem,2.5vw,1.1rem);font-weight:700;color:var(--muted);margin-bottom:4px;letter-spacing:.5px;">The Complete Step-by-Step Blueprint</div>
+  
+  <div class="reveal" style="text-align:center;margin:28px auto 0;max-width:380px;">
+    <img src="images/img12.jpeg" alt="The YouTube Blueprint Course" style="width:100%;border-radius:16px;border:2px solid rgba(255,0,0,.25);box-shadow:0 0 50px rgba(255,0,0,.15);display:block;">
+    <div style="margin-top:10px;font-size:.68rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase;">The Complete YouTube Blueprint — Yours Instantly</div>
+  </div>
+
+  <div class="stack-grid">
+    <div class="stack-card reveal"><span class="stack-icon">🎯</span><div class="stack-name">Viral Thumbnail Formula</div><div class="stack-desc">The exact thumbnail blueprint that gets 8–15% CTR. Most channels average 2%. We show you why they click and how to copy it.</div><div class="stack-val">Most impactful module in the course</div></div>
+    <div class="stack-card reveal"><span class="stack-icon">📈</span><div class="stack-name">YouTube SEO Mastery</div><div class="stack-desc">Rank your videos on search before you have a single subscriber. The organic discovery engine that makes channels explode overnight.</div><div class="stack-val">Gets you found on day 1</div></div>
+    <div class="stack-card reveal"><span class="stack-icon">🤖</span><div class="stack-name">AI Content Engine</div><div class="stack-desc">Use AI to generate video ideas, scripts, titles, and descriptions in minutes. Post 3x faster without running out of ideas — ever.</div><div class="stack-val">10x your output</div></div>
+    <div class="stack-card reveal"><span class="stack-icon">🎬</span><div class="stack-name">Hook & Script System</div><div class="stack-desc">The first 30 seconds of every video determines everything. We give you the exact hook formula that keeps viewers watching through to the end.</div><div class="stack-val">Boosts watch time immediately</div></div>
+    <div class="stack-card reveal"><span class="stack-icon">💰</span><div class="stack-name">Monetization Roadmap</div><div class="stack-desc">4 income streams you can start before you hit 1,000 subscribers. Affiliate, sponsorships, digital products, and memberships — all mapped out.</div><div class="stack-val">Earn before monetization threshold</div></div>
+    <div class="stack-card reveal"><span class="stack-icon">🏆</span><div class="stack-name">Done-With-You Coaching</div><div class="stack-desc">4 real coaches work with you personally until your channel is growing. Audits, strategy, feedback, accountability — all included.</div><div class="stack-val">Priceless</div></div>
+  </div>
+  <div class="tools-box reveal">
+    <div class="tools-title">🔥 Also Included — Free</div>
+
+    <div style="text-align:center;margin-bottom:20px;">
+      <img src="images/img13.jpeg" alt="YouTube Blueprint Guidebook" style="width:100%;max-width:320px;border-radius:12px;border:1px solid rgba(255,0,0,.2);box-shadow:0 8px 30px rgba(0,0,0,.4);display:inline-block;">
+      <div style="margin-top:8px;font-size:.65rem;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;">Full PDF Guidebook — Included Free</div>
+    </div>
+
+    <div class="tool-row"><div class="tdot"></div><div class="tname2">30-Day Content Calendar Template</div><span class="ttag">Included</span></div>
+    <div class="tool-row"><div class="tdot"></div><div class="tname2">Thumbnail Design Kit (Canva Templates)</div><span class="ttag">Included</span></div>
+    <div class="tool-row"><div class="tdot"></div><div class="tname2">Viral Title Formula Swipe File (200+ titles)</div><span class="ttag">Included</span></div>
+    <div class="tool-row"><div class="tdot"></div><div class="tname2">Channel Audit Checklist</div><span class="ttag">Included</span></div>
+    <div class="tool-row"><div class="tdot"></div><div class="tname2">Brand Deal Pitch Templates</div><span class="ttag">Included</span></div>
+    <div class="tool-row"><div class="tdot"></div><div class="tname2">Analytics Mastery Dashboard</div><span class="ttag">Included</span></div>
+    <div class="tool-row"><div class="tdot"></div><div class="tname2">Email List Builder System for YouTubers</div><span class="ttag">Included</span></div>
+    <div class="tool-row"><div class="tdot"></div><div class="tname2">AI Scripting Prompt Library</div><span class="ttag">Included</span></div>
+  </div>
+</div>
+
+<section class="testi-section">
+  <div class="testi-inner">
+    <div class="section-tag reveal">In Their Own Words</div>
+    <div class="divider-line reveal"></div>
+    <h2 class="section-title reveal">What <span>Students Say</span></h2>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">I hit 1,000 subscribers in 9 days. I've been trying to grow on YouTube for two years on my own. The thumbnail module alone was worth 10x what I paid. I literally cried when I saw the number hit 1K.</p>
+        <img src="images/img14.jpeg" alt="Student Review" style="width:100%; border-radius: 8px; margin-top: 14px; border: 1px solid var(--border); margin-bottom: 14px;">
+        <div class="testi-footer"><div class="tavi" style="background:rgba(255,215,0,.15);color:var(--gold)">SM</div><div><div class="t-name">Sarah Mitchell</div><div class="t-meta">Austin, TX · Zero To 10K Student</div></div></div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">My first video using the hook formula got 47,000 views. My channel went from averaging 80 views to thousands overnight. The way everything is broken down — anyone can follow this. Anyone.</p>
+        <img src="images/img15.jpeg" alt="Student Review" style="width:100%; border-radius: 8px; margin-top: 14px; border: 1px solid var(--border); margin-bottom: 14px;">
+        <div class="testi-footer"><div class="tavi" style="background:rgba(255,0,0,.12);color:var(--yt)">PS</div><div><div class="t-name">Priya Sharma</div><div class="t-meta">Toronto, CA · Zero To 10K Student</div></div></div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">I was honestly skeptical. But watching Marcus hit 10K subscribers live on the coaching call — the whole group celebrating in real time — that was all the proof I needed. I enrolled immediately. Six weeks later, monetized. No regrets.</p>
+        <img src="images/img16.jpeg" alt="Student Review" style="width:100%; border-radius: 8px; margin-top: 14px; border: 1px solid var(--border); margin-bottom: 14px;">
+        <div class="testi-footer"><div class="tavi" style="background:rgba(245,166,35,.12);color:var(--gold2)">JR</div><div><div class="t-name">Jake Rivera</div><div class="t-meta">Miami, FL · Zero To 10K Student</div></div></div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">The YouTube SEO module alone changed everything. I was invisible on search. Now three of my videos rank on page one for competitive keywords. 22,000 subscribers and growing — and I work maybe 5 hours a week on the channel.</p>
+        <img src="images/img1.jpeg" alt="Student Review" style="width:100%; border-radius: 8px; margin-top: 14px; border: 1px solid var(--border); margin-bottom: 14px;">
+        <div class="testi-footer"><div class="tavi" style="background:rgba(255,0,0,.1);color:var(--yt)">MO</div><div><div class="t-name">Marcus Okafor</div><div class="t-meta">London, UK · Zero To 10K Student</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wall-of-love" style="padding: 60px 20px; background: rgba(10, 10, 18, 0.5); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div class="section-tag reveal" style="text-align: center;">Proof In Pixels</div>
+    <h2 class="section-title reveal" style="text-align: center; margin-bottom: 30px;">The Results <span>Don't Lie</span></h2>
+    <div class="wall-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin-top: 30px;">
+      <div class="wall-item reveal"><img src="images/img1.jpeg" alt="Student Result" style="width:100%; border-radius: 12px; border: 1px solid var(--border); transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"></div>
+      <div class="wall-item reveal"><img src="images/img2.jpeg" alt="Student Result" style="width:100%; border-radius: 12px; border: 1px solid var(--border); transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"></div>
+      <div class="wall-item reveal"><img src="images/img3.jpeg" alt="Student Result" style="width:100%; border-radius: 12px; border: 1px solid var(--border); transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"></div>
+      <div class="wall-item reveal"><img src="images/img4.jpeg" alt="Student Result" style="width:100%; border-radius: 12px; border: 1px solid var(--border); transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"></div>
+      <div class="wall-item reveal"><img src="images/img5.jpeg" alt="Student Result" style="width:100%; border-radius: 12px; border: 1px solid var(--border); transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"></div>
+      <div class="wall-item reveal"><img src="images/img6.jpeg" alt="Student Result" style="width:100%; border-radius: 12px; border: 1px solid var(--border); transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"></div>
+      <div class="wall-item reveal"><img src="images/img7.jpeg" alt="Student Result" style="width:100%; border-radius: 12px; border: 1px solid var(--border); transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"></div>
+      <div class="wall-item reveal"><img src="images/img8.jpeg" alt="Student Result" style="width:100%; border-radius: 12px; border: 1px solid var(--border); transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"></div>
+      <div class="wall-item reveal"><img src="images/img9.jpeg" alt="Student Result" style="width:100%; border-radius: 12px; border: 1px solid var(--border); transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"></div>
+      <div class="wall-item reveal"><img src="images/img10.jpeg" alt="Student Result" style="width:100%; border-radius: 12px; border: 1px solid var(--border); transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"></div>
+      <div class="wall-item reveal"><img src="images/img11.jpeg" alt="Student Result" style="width:100%; border-radius: 12px; border: 1px solid var(--border); transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"></div>
+      <div class="wall-item reveal"><img src="images/img12.jpeg" alt="Student Result" style="width:100%; border-radius: 12px; border: 1px solid var(--border); transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"></div>
+      <div class="wall-item reveal"><img src="images/img13.jpeg" alt="Student Result" style="width:100%; border-radius: 12px; border: 1px solid var(--border); transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"></div>
+      <div class="wall-item reveal"><img src="images/img14.jpeg" alt="Student Result" style="width:100%; border-radius: 12px; border: 1px solid var(--border); transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"></div>
+      <div class="wall-item reveal"><img src="images/img15.jpeg" alt="Student Result" style="width:100%; border-radius: 12px; border: 1px solid var(--border); transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"></div>
+      <div class="wall-item reveal"><img src="images/img16.jpeg" alt="Student Result" style="width:100%; border-radius: 12px; border: 1px solid var(--border); transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"></div>
+    </div>
+  </div>
+</section>
+
+<div class="coaches-section">
+  <div class="section-tag reveal">Personal Support</div>
+  <div class="divider-line reveal"></div>
+  <h2 class="section-title reveal">Your 4 Personal <span>Coaches</span></h2>
+  <p class="reveal" style="color:var(--muted);font-size:.88rem;line-height:1.7;max-width:500px">This is what makes Zero To 10K different. You don't figure it out alone. Four real coaches work with you personally until your channel is growing — audits, feedback, strategy, accountability.</p>
+  <div class="coaches-grid">
+    <div class="coach-card reveal"><div class="coach-av">V</div><div class="coach-role">Lead Coach</div><div class="coach-name">Coach Victor</div><div class="coach-desc">Founder. Oversees your entire channel growth from zero to monetized.</div></div>
+    <div class="coach-card reveal"><div class="coach-av">M</div><div class="coach-role">SEO Coach</div><div class="coach-name">Michael A.</div><div class="coach-desc">YouTube SEO specialist. Gets your videos ranking on search fast.</div></div>
+    <div class="coach-card reveal"><div class="coach-av">E</div><div class="coach-role">Content Coach</div><div class="coach-name">Ego</div><div class="coach-desc">Script and hook expert. Connects your content to what audiences want.</div></div>
+    <div class="coach-card reveal"><div class="coach-av">T</div><div class="coach-role">Growth Coach</div><div class="coach-name">Tochi O.</div><div class="coach-desc">Ensures your full system is running and generating real subscriber growth.</div></div>
+  </div>
+</div>
+
+<div class="urgency-section">
+  <div class="urgency-inner">
+    <div class="urgency-title reveal">⚠ Your Spot Is Closing</div>
+    <div class="urgency-box reveal">
+      <div class="urgency-item"><div class="u-icon">🚫</div><div class="u-text"><strong>Only 10 enrollment spots exist at this price.</strong> Once the 10th person joins — this offer closes permanently. No exceptions.</div></div>
+      <div class="urgency-item"><div class="u-icon">⏳</div><div class="u-text">The timer at the top of this page is real. Every second you wait is a second someone else is building the audience you want.</div></div>
+      <div class="urgency-item"><div class="u-icon">📈</div><div class="u-text">While you're deciding, <strong>someone else is uploading their first optimized video.</strong> The students above weren't special. They just started.</div></div>
+    </div>
+  </div>
+</div>
+
+<section class="final-section">
+  <div style="margin:0 auto 32px;max-width:620px;">
+    <div style="font-size:.6rem;font-weight:700;letter-spacing:5px;color:var(--yt);text-transform:uppercase;margin-bottom:10px;">🔴 YOUR SHORTCUT TO THE TOP</div>
+    <h2 style="font-family:'Bebas Neue',cursive;font-size:clamp(2rem,8vw,4.5rem);line-height:.92;margin-bottom:0 !important;">
+      <span style="color:#fff;">YouTube</span> <span style="color:var(--yt);">Money Machine:</span><br>
+      <span style="color:var(--gold);font-size:clamp(1.3rem,4.5vw,2.6rem);">The Step-by-Step Blueprint for Fast Growth</span>
+    </h2>
+  </div>
+
+  <div class="proof-bar" style="margin-bottom:24px"><span class="live-dot"></span>You've Seen The Proof. You've Seen The Growth.</div>
+  <h2 class="reveal">WHAT ARE YOU<br><span>WAITING FOR?</span></h2>
+  <p class="final-sub reveal">Your coaches are ready. Your system is waiting. The students above showed you it works in 12 days. The only channel that won't grow is the one you never start. Now it's your turn.</p>
+  <div class="timer-wrap reveal">
+    <div class="timer-label">⏳ Discount Expires In</div>
+    <div class="timer-row">
+      <div class="t-block"><div class="t-num" id="mins">04</div><div class="t-unit">Minutes</div></div>
+      <div class="t-sep">:</div>
+      <div class="t-block"><div class="t-num" id="secs">00</div><div class="t-unit">Seconds</div></div>
+    </div>
+  </div>
+  <div class="slots-txt reveal">🔴 ONLY 10 SPOTS — 7 REMAINING RIGHT NOW</div>
+  <div class="cta-stack reveal">
+    <div class="price-row">
+      <span class="old-price">$197</span>
+      <span class="new-price">$97</span>
+      <span class="save-badge">TODAY ONLY</span>
+    </div>
+    <a href="#enroll" class="dl-btn buy-trigger">🔴 Buy Now — $97</a>
+    <div class="btn-note">🔒 Secure Checkout · ✅ Instant Access · 📞 4 Coaches Ready</div>
+  </div>
+</section>
+
+<footer>© 2025 Zero To 10K — YouTube Growth System · All rights reserved</footer>
+
+<script>
+const subTarget = 8412;
+const subEl = document.getElementById('sub-num');
+let subCurrent = 0;
+let subRunning = false;
+function startSubCounter() {
+  if (subRunning) return;
+  subRunning = true;
+  const duration = 3200;
+  const startTime = performance.now();
+  function tick(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    subCurrent = Math.floor(eased * subTarget);
+    if (subEl) subEl.textContent = subCurrent.toLocaleString();
+    if (progress < 1) requestAnimationFrame(tick);
+    else {
+      if (subEl) subEl.textContent = subTarget.toLocaleString();
+      let subTarget2 = subTarget;
+      setInterval(() => {
+        subTarget2++;
+        if (subEl) subEl.textContent = subTarget2.toLocaleString();
+      }, 4200);
+    }
+  }
+  requestAnimationFrame(tick);
+}
+const widgetObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { startSubCounter(); widgetObs.unobserve(e.target); }});
+}, { threshold: 0.3 });
+const widget = document.querySelector('.sub-widget');
+if (widget) widgetObs.observe(widget);
+
+const notifs = ['🔔 New subscriber!', '🔔 +3 new subscribers!', '🔔 Someone subscribed!', '🔔 New subscriber from search!', '🔔 +1 from recommended!'];
+let notifIdx = 0;
+setInterval(() => {
+  const el = document.getElementById('sw-notif');
+  if (el) { notifIdx = (notifIdx + 1) % notifs.length; el.textContent = notifs[notifIdx]; }
+}, 3500);
+
+const TOTAL_SLOTS = 15;
+let takenCount = 5;
+let youPosition = 5;
+function renderSlots() {
+  const container = document.getElementById('fs-dots');
+  const caption = document.getElementById('fs-caption');
+  const slotsLeftTxt = document.getElementById('slots-left-txt');
+  if (!container) return;
+  container.innerHTML = '';
+  for (let i = 0; i < TOTAL_SLOTS; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'fs-dot';
+    if (i < takenCount) {
+      dot.classList.add('taken');
+      dot.textContent = '✗';
+    } else if (i === youPosition) {
+      dot.classList.add('you');
+      dot.textContent = 'YOU';
+    } else {
+      dot.classList.add('open');
+      dot.textContent = '✓';
+    }
+    container.appendChild(dot);
+  }
+  const remaining = TOTAL_SLOTS - takenCount;
+  if (caption) {
+    if (takenCount < youPosition) {
+      caption.innerHTML = `<strong>${takenCount} spots taken.</strong> <span class="you-note">YOUR spot is next in line.</span> ${remaining} remaining.`;
+    } else {
+      caption.innerHTML = `<strong>${takenCount} spots taken.</strong> <span class="you-note">Secure YOUR spot before it's gone.</span> ${remaining} remaining.`;
+    }
+  }
+  if (slotsLeftTxt) slotsLeftTxt.textContent = `🔴 ${remaining} Spots Left`;
+}
+renderSlots();
+const slotSchedule = [5000, 10000, 15000, 20000, 25000, 30000, 35000, 40000, 45000, 50000];
+let scheduleIndex = 0;
+function scheduleNext() {
+  if (scheduleIndex >= slotSchedule.length || takenCount >= TOTAL_SLOTS - 1) return;
+  setTimeout(() => {
+    takenCount++;
+    if (youPosition < takenCount) youPosition = takenCount;
+    renderSlots();
+    const dots = document.querySelectorAll('.fs-dot.taken');
+    const lastTaken = dots[dots.length - 1];
+    if (lastTaken) { lastTaken.classList.add('just-taken'); setTimeout(() => lastTaken.classList.remove('just-taken'), 600); }
+    const floatSlot = document.getElementById('float-slot');
+    if (floatSlot) { floatSlot.classList.add('flash'); setTimeout(() => floatSlot.classList.remove('flash'), 800); }
+    const alert = document.getElementById('fs-alert');
+    if (alert) {
+      alert.textContent = `🔴 Someone just enrolled! ${TOTAL_SLOTS - takenCount} spots remaining — YOUR spot moved!`;
+      alert.classList.remove('show');
+      void alert.offsetWidth;
+      alert.classList.add('show');
+      setTimeout(() => alert.classList.remove('show'), 4000);
+    }
+    scheduleIndex++;
+    scheduleNext();
+  }, slotSchedule[scheduleIndex]);
+}
+scheduleNext();
+
+let total = 4 * 60;
+const minsEl = document.getElementById('mins');
+const secsEl = document.getElementById('secs');
+const topMins = document.getElementById('top-mins');
+const topSecs = document.getElementById('top-secs');
+const tickTimer = setInterval(() => {
+  if (total <= 0) {
+    clearInterval(tickTimer);
+    [minsEl, secsEl, topMins, topSecs].forEach(el => { if(el) el.textContent = '00'; });
+    return;
+  }
+  total--;
+  const m = String(Math.floor(total/60)).padStart(2,'0');
+  const s = String(total%60).padStart(2,'0');
+  if(minsEl) minsEl.textContent = m;
+  if(secsEl) secsEl.textContent = s;
+  if(topMins) topMins.textContent = m;
+  if(topSecs) topSecs.textContent = s;
+}, 1000);
+
+const CHECKOUT_URL = '#enroll';
+function setLinks(){
+  document.querySelectorAll('.buy-trigger').forEach(el => {
+    el.href = CHECKOUT_URL;
+  });
+}
+setLinks();
+document.querySelectorAll('.buy-trigger').forEach(el => {
+  el.addEventListener('click', function(e) {
+    if (CHECKOUT_URL === '#enroll') return;
+    e.preventDefault();
+    window.open(CHECKOUT_URL, '_blank');
+  });
+});
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
